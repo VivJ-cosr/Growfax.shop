@@ -1,3 +1,4 @@
+<!DOCTYPE html> <html lang="en"> <head> <meta charset="UTF-8" /> <meta name="viewport" content="width=device-width, initial-scale=1.0" /> <title>Growfax.shop</title> <style> body { margin: 0; font-family: 'Poppins', sans-serif; color: #e0e0e0; background: linear-gradient(180deg, #0a0a0a 0%, #101010 100%); display: flex; flex-direction: column; align-items: center; text-align: center; min-height: 100vh; overflow-x: hidden; }
 img.banner {
   max-width: 600px;
   width: 90%;
@@ -213,3 +214,17 @@ footer {
   .modal { padding: 20px; }
 }
 
+</style> </head> <body> <img class="banner" src="https://vivj-cosr.github.io/growfax.shop/Growfax_banner.png" alt="Growfax Banner" /> <h1>Growfax.shop</h1> <div class="roles-section"> <h2>Buy Roles</h2> <div class="role-list" id="roleList"></div> </div> <footer>© 2025 <span style="color:#00ffe0;">VivJ</span> — Powered by <span style="color:#00ffe0;">Growfax</span></footer> <!-- MODAL --> <div class="modal-bg" id="modal-bg"> <div class="modal"> <div class="close-btn" onclick="closeModal()">✖</div> <h2 id="modal-role">Loading...</h2> <input id="player-name" type="text" placeholder="Enter your Growtopia username" /> <div class="price" id="modal-price">💳 Rp 0 • 💲 $0</div>
+  <div class="methods">
+    <p><strong>Payment Methods:</strong></p>
+    <p>🏦 BNI: <strong>1949656911 (a.n. VivJ)</strong></p>
+    <p>💰 PayPal: <strong>BilzXd1</strong></p>
+  </div>
+
+  <a id="email-btn" class="button" href="#">Send Proof (Email)</a>
+  <a class="button" href="https://discord.com/users/936829020434235472" target="_blank">Open Discord</a>
+
+  <div class="note">Please attach screenshot of your payment receipt.</div>
+</div>
+
+</div> <script> const roles = [ { id: 1, name: "VIP", btc: 10 }, { id: 2, name: "VIP+", btc: 20 }, { id: 3, name: "Moderator", btc: 35 }, { id: 4, name: "Super Moderator", btc: 50 }, { id: 5, name: "Developer", btc: 100 }, { id: 6, name: "God", btc: 250 }, { id: 7, name: "God [MAX]", btc: 500 } ]; const btcToIDR = 800; const btcToUSD = 0.048; const roleList = document.getElementById("roleList"); const modalBg = document.getElementById("modal-bg"); const modalRole = document.getElementById("modal-role"); const modalPrice = document.getElementById("modal-price"); const emailBtn = document.getElementById("email-btn"); const playerInput = document.getElementById("player-name"); roles.forEach(r => { const div = document.createElement("div"); div.className = "role-card"; div.innerHTML = `<h3>${r.name}</h3> <button class="buy-btn" onclick="openModal(${r.id})">Buy Role</button>`; roleList.appendChild(div); }); function openModal(id) { const role = roles.find(r => r.id === id); if (!role) return; const priceIDR = role.btc * btcToIDR; const priceUSD = (role.btc * btcToUSD).toFixed(2); modalRole.textContent = `Purchase Role — ${role.name}`; modalPrice.textContent = `💳 Rp ${priceIDR.toLocaleString()} • 💲 $${priceUSD}`; playerInput.value = ""; emailBtn.onclick = () => { const user = playerInput.value || "Unknown"; const subject = encodeURIComponent(`Payment Proof - ${role.name} for ${user}`); const body = encodeURIComponent(`Hello,\n\nI have made the payment for the ${role.name} role.\n\nPlayer: ${user}\nRole: ${role.name}\nAmount: Rp ${priceIDR.toLocaleString()} / $${priceUSD}\n\nPlease find my proof attached.\n\nThanks,\nGrowfax User`); window.location.href = `mailto:wakbelca@gmail.com?subject=${subject}&body=${body}`; }; modalBg.style.display = "flex"; } function closeModal() { modalBg.style.display = "none"; } </script> </body> </html>
